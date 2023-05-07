@@ -27,9 +27,14 @@ export async function getServerSideProps(context) {
   };
 }
 
+
 const MyList = ({ myListVideos }) => {
-  return (
-    <div>
+  if(myListVideos.length<0){
+    return <p>No liked movies to Show</p>
+  }else{
+
+    return (
+      <div>
       <Head>
         <title>My list</title>
       </Head>
@@ -42,11 +47,12 @@ const MyList = ({ myListVideos }) => {
             size="small"
             shouldWrap
             shouldScale={false}
-          />
+            />
         </div>
       </main>
     </div>
   );
+}
 };
 
 export default MyList;

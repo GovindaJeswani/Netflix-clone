@@ -1,5 +1,5 @@
 {
-  "name": "discover-videos-atomic",
+  "name": "Netflix_Clone",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "author": "govinda",
+  "license": "ISC",
   "dependencies": {
     "@magic-sdk/admin": "^1.4.1",
     "classnames": "^2.3.1",
