@@ -117,14 +117,14 @@ export default function Home({
             size="small"
           />
 
-          {/* <SectionCards title="Travel" videos={travelVideos} size="small" /> */}
+          <SectionCards title="Travel" videos={travelVideos} size="small" /> 
           <SectionCards title="Movies" videos={moviesVideos} size="medium" />
-          {/* <SectionCards
+           <SectionCards
             title="Productivity"
             videos={productivityVideos}
             size="medium"
-          /> */}
-          {/* <SectionCards title="Popular" videos={popularVideos} size="small" /> */}
+          /> 
+           <SectionCards title="Popular" videos={popularVideos} size="small" /> 
         </div>
       </div>
     </div>
