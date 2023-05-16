@@ -3,6 +3,12 @@ import { useRouter } from "next/router";
 import { magic } from "../lib/magic-client";
 import "../styles/globals.css";
 
+// import { Elements } from '@stripe/react-stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
+
+// const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
+
 import Loading from "../components/loading/loading";
 
 function MyApp({ Component, pageProps }) {
@@ -38,7 +44,10 @@ function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeError", handleComplete);
     };
   }, [router]);
-  return isLoading ? <Loading /> : <Component {...pageProps} />;
+  return isLoading ? <Loading /> :
+  // <Elements stripe={stripePromise}> 
+  <Component {...pageProps} />
+  {/* ;</Elements> */}
 }
 
 export default MyApp;

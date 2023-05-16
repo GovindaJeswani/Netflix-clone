@@ -4,8 +4,8 @@ import styles from "../styles/Home.module.css";
 import Banner from "../components/banner/banner";
 import NavBar from "../components/nav/navbar";
 import SearchBox from "../components/search/searchBox";
-
 import SectionCards from "../components/card/section-cards";
+
 
 import {
   getVideos,
@@ -15,9 +15,7 @@ import {
 import { redirectUser } from "../utils/redirectUser";
 import { useState } from "react";
 
-
 export async function getServerSideProps(context) {
-  
   const { userId, token } = await redirectUser(context);
 
   if (!userId) {
@@ -61,29 +59,25 @@ export default function Home({
   moviesVideos,
   watchItAgainVideos,
 }) {
-
-  const [searchVideos, setSearchVideos] = useState([])
+  const [searchVideos, setSearchVideos] = useState([]);
   // const searchVideos = await getVideos(searchValue)
 
-  const searchInputChange = async(value)=>{
-  try{
-    const promise= await fetch('/api/search',{
-      method:"POST",
-      body:JSON.stringify({
-        searchTerm:value
-      })
-    })
+  const searchInputChange = async (value) => {
+    try {
+      const promise = await fetch("/api/search", {
+        method: "POST",
+        body: JSON.stringify({
+          searchTerm: value,
+        }),
+      });
 
-    const result = await promise.json()
+      const result = await promise.json();
 
-
-    setSearchVideos(result)
-  }catch(e){
-    console.log(e)
-  }
-  
-  }
-  // console.log(onSearchValue);
+      setSearchVideos(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -96,6 +90,7 @@ export default function Home({
 
       <div className={styles.main}>
         <NavBar />
+
         <Banner
           videoId="4zH5iYM4wJo"
           // videoId="spYbknuOqD4"
@@ -103,30 +98,40 @@ export default function Home({
           subTitle="a very cute dog"
           imgUrl="/static/clifford.webp"
         />
-        <SearchBox onSearchValue={searchInputChange}/>
+        <SearchBox onSearchValue={searchInputChange} />
         <div className={styles.sectionWrapper}>
-
-          {searchVideos.length>0&&<SectionCards title="Searched Videos" videos={searchVideos} size="small" />}
+          {searchVideos.length > 0 && (
+            <SectionCards
+              title="Searched Videos"
+              videos={searchVideos}
+              size="medium"
+            />
+          )}
           
+        {/* <Elements stripe={stripePromise}>
+          <PaymentForm />
+        </Elements> */}
+
           <SectionCards title="Disney" videos={disneyVideos} size="large" />
-        
-        
+
           <SectionCards
             title="Watch it again"
             videos={watchItAgainVideos}
             size="small"
           />
 
-          {/* <SectionCards title="Travel" videos={travelVideos} size="small" /> */}
+          <SectionCards title="Travel" videos={travelVideos} size="small" />
           <SectionCards title="Movies" videos={moviesVideos} size="medium" />
-          {/* <SectionCards
+          <SectionCards
             title="Productivity"
             videos={productivityVideos}
             size="medium"
-          /> */}
-          {/* <SectionCards title="Popular" videos={popularVideos} size="small" /> */}
+          />
+          <SectionCards title="Popular" videos={popularVideos} size="small" />
+
+          
         </div>
       </div>
     </div>
-  );
+  )
 }

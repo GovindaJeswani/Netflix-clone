@@ -10,7 +10,7 @@ export default async function login(req, res) {
       const didToken = auth ? auth.substr(7) : "";
             console.log("from API login file ",{didToken });
       const metadata = await magicAdmin.users.getMetadataByToken(didToken);
-      console.log("from API login file ",metadata.issuer);
+      // console.log("from API login file ",metadata.issuer);
       
       const token = jwt.sign(
         {
@@ -25,7 +25,7 @@ export default async function login(req, res) {
         },
         process.env.JWT_SECRET
       );
-      console.log("from API login file ",{token}); 
+      // console.log("from API login file ",{token}); 
 
       // To check if it is new User ?
       const isNewUserQuery = await isNewUser(token, metadata.issuer);

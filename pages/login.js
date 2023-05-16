@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { magic } from "../lib/magic-client";
+import SubscriptionPage from "../components/subscription/subscriptionPage";
 
 import styles from "../styles/Login.module.css";
 
@@ -35,44 +36,73 @@ const Login = () => {
     setEmail(email);
   };
 
+  const handleLoginWithStripe = async (e) => {
+    const response = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const session = await response.json();
+
+    if (session && session.id) {
+      // const stripe = await loadStripe('pk_test_51N5N3HSFRmrn6FpUA58LeW7zRdYFCUTqimyQB5Y0nnZaay7VNVHHdRHyl2RZI3rrtzwlGDYGlXeOBKnyHrHxT3SM009PwzQwYb');
+      const stripe = await loadStripe(
+        `${process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY}`
+      );
+      await stripe.redirectToCheckout({ sessionId: session.id });
+    } else {
+      console.error("Error creating checkout session");
+      alert("Payment failed. Please try again.");
+    }
+  };
+
+
   const handleLoginWithEmail = async (e) => {
     e.preventDefault();
 
-    if (email) {
-      // log in a user by their email
-      try {
-        setIsLoading(true);
+    //! Stable code from here...
+        if (email) {
+          // log in a user by their email
 
-        const didToken = await magic.auth.loginWithMagicLink({
-          email,
-        });
-        if (didToken) {
-          const response = await fetch("/api/login", {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${didToken}`,
-              "Content-Type": "application/json",
-            },
-          });
+          try {
+            setIsLoading(true)
+            const didToken = await magic.auth.loginWithMagicLink({
+              email,
+            });
+            if (didToken) {
+              // checking here
 
-          const loggedInResponse = await response.json();
-          if (loggedInResponse.done) {
-            router.push("/");
-          } else {
+              const response = await fetch("/api/login", {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${didToken}`,
+                  "Content-Type": "application/json",
+                },
+              });
+
+              const loggedInResponse = await response.json();
+              if (loggedInResponse.done) {
+
+                //  stripe...
+                router.push("/");
+              } else {
+                setIsLoading(false);
+                setUserMsg("Something went wrong logging in");
+              }
+            }
+          } catch (error) {
+            // Handle errors if required!
+            console.error("Something went wrong logging in", error);
             setIsLoading(false);
-            setUserMsg("Something went wrong logging in");
           }
+        } else {
+          // show user message
+          setIsLoading(false);
+          setUserMsg("Enter a valid email address");
         }
-      } catch (error) {
-        // Handle errors if required!
-        console.error("Something went wrong logging in", error);
-        setIsLoading(false);
-      }
-    } else {
-      // show user message
-      setIsLoading(false);
-      setUserMsg("Enter a valid email address");
-    }
   };
   return (
     <div className={styles.container}>
@@ -109,6 +139,7 @@ const Login = () => {
           />
 
           <p className={styles.userMsg}>{userMsg}</p>
+          {/* <button onClick={handleLoginWithStripe} className={styles.loginBtn}> */}
           <button onClick={handleLoginWithEmail} className={styles.loginBtn}>
             {isLoading ? "Loading..." : "Sign In"}
           </button>

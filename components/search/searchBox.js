@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import s from "./searchBox.module.css"; // Import the CSS file for styling
-import SectionCards from "../card/section-cards";
 
 import { getVideos } from "../../lib/videos";
 
@@ -16,7 +15,7 @@ const SearchBox = ({onSearchValue}) => {
   const handleSubmitChange = (e)=>{
     e.preventDefault();
     onSearchValue(searchTerm)
-    console.log(searchTerm);
+    // console.log(searchTerm);
   }
 
   return (
@@ -29,7 +28,8 @@ const SearchBox = ({onSearchValue}) => {
         value={searchTerm}
         onChange={handleInputChange}
         />
-      <button className={s.searchButton} onClick={handleSubmitChange}>
+      {/* <button type="submit" className={s.searchButton} onClick={handleSubmitChange}> */}
+      <button type="submit" className={s.searchButton} onClick={handleSubmitChange}>
         <Image
                 src={"/static/search_Fi.svg"}
                 alt="search icon"
