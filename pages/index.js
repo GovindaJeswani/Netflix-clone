@@ -128,8 +128,6 @@ export default function Home({
             size="medium"
           />
           <SectionCards title="Popular" videos={popularVideos} size="small" />
-
-          
         </div>
       </div>
     </div>
