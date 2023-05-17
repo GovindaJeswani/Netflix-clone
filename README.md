@@ -1,24 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+# Netflix Clone
 
 ## Getting Started
 
-First, run the development server:
+### 1: First [clone](https://github.com/GovindaJeswani/Netflix-clone.git)
+ 
+ then use 
+ 
+```bash
+npm install 
+```
+this is going to install all the dependences that required for project.
 
+### 2: Now create .env.local file in your project directory with following variables
+
+
+```bash
+NEXT_PUBLIC_HASURA_ADMIN_URL = (YOUR_HASURA_ADMIN_URL)
+
+JWT_SECRET = (YOUR_JWT_SECRET)
+
+NEXT_PUBLIC_HASURA_ADMIN_SECRET = (YOUR_HASURA_ADMIN_SECRET)
+
+MAGIC_SERVER_KEY = (MAGIC_SERVER_KEY)
+
+NEXT_PUBLIC_MAGIC_PUBLISHABLE_API_KEY = (YOUR_MAGIC_PUBLISHABLE_KEY)
+
+NEXT_PUBLIC_STRIPE_SECRET_KEY = (YOUR_STRIPE_SECRET_KEY)
+
+
+NEXT_PUBLIC_STRIPE_PUBLIC_KEY = (STRIPE_PUBLIC_KEY)
+
+YOUTUBE_API_KEY = (YOUR_YOUTUBE_API_KEY)
+
+```
+You have to register yourself in following account and then get all those key and replace here !!!
+
+### 3.  Now you have to execute this command
+
+ run the development server:
 ```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+###  Key features
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+	Using Next-Js and PostgreSql 
+	Passwordless Authentication : with [magic sdk](https://magic.link/docs/home/welcome)
+	User Authentication & Registration : with [hasura](https://hasura.io/)
+	Query with GraphQL API
+	Videos from Youtube API
+	
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### To-do
+	integeration of payment based on subscription plan
+	Extra features on video player
 
+  
 ## Learn More
+	[Demo](https://github.com/GovindaJeswani/Netflix-clone/deployments/activity_log?environment=Production)
+
 
 To learn more about Next.js, take a look at the following resources:
 
