@@ -61,7 +61,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
   
 ## Learn More
-	[Demo](https://github.com/GovindaJeswani/Netflix-clone/deployments/activity_log?environment=Production)
+	Demo [Demo](https://github.com/GovindaJeswani/Netflix-clone/deployments/activity_log?environment=Production)
 
 
 To learn more about Next.js, take a look at the following resources:
