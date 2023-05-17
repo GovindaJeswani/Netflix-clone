@@ -3,7 +3,7 @@
 
 ## Getting Started
 
-### 1: First [clone](https://github.com/GovindaJeswani/Netflix-clone.git)
+### 1. First [clone](https://github.com/GovindaJeswani/Netflix-clone.git)
  
  then use 
  
@@ -12,7 +12,7 @@ npm install
 ```
 this is going to install all the dependences that required for project.
 
-### 2: Now create .env.local file in your project directory with following variables
+### 2. Now create .env.local file in your project directory with following variables
 
 
 ```bash
@@ -60,9 +60,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 	Extra features on video player
 
   
+### Demo
+	[Demo](https://github.com/GovindaJeswani/Netflix-clone/deployments/activity_log?environment=Production)
 ## Learn More
-	Demo [Demo](https://github.com/GovindaJeswani/Netflix-clone/deployments/activity_log?environment=Production)
-
 
 To learn more about Next.js, take a look at the following resources:
 
